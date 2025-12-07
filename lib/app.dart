@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:task_manager/ui/screens/splash_Screen.dart';
 import 'package:task_manager/ui/utility/app_colors.dart';
@@ -12,6 +10,7 @@ class TaskManagerApp extends StatelessWidget {
     return MaterialApp(
       home: const SplashScreen(),
       theme: lightThemeData(),
+      debugShowCheckedModeBanner: false,
     );
   }
 
@@ -33,6 +32,12 @@ class TaskManagerApp extends StatelessWidget {
           fontWeight: FontWeight.bold,
           color: Colors.black,
         ),
+         titleSmall: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.4,
+          color: Colors.grey,
+        ),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -42,6 +47,14 @@ class TaskManagerApp extends StatelessWidget {
           fixedSize: const Size.fromWidth(double.maxFinite),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          foregroundColor: Colors.grey,
+          textStyle: const TextStyle(
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),
