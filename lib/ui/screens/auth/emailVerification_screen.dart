@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:task_manager/ui/screens/pin_verification_screen.dart';
 import 'package:task_manager/ui/utility/app_colors.dart';
 import 'package:task_manager/ui/widgets/background_widget.dart';
 
@@ -7,7 +8,8 @@ class EmailverificationScreen extends StatefulWidget {
   const EmailverificationScreen({super.key});
 
   @override
-  State<EmailverificationScreen> createState() => _EmailverificationScreenState();
+  State<EmailverificationScreen> createState() =>
+      _EmailverificationScreenState();
 }
 
 class _EmailverificationScreenState extends State<EmailverificationScreen> {
@@ -29,7 +31,8 @@ class _EmailverificationScreenState extends State<EmailverificationScreen> {
                   ),
                   Text('Your Email Address',
                       style: Theme.of(context).textTheme.titleLarge),
-                  Text('A 6 digit verification pin will send to your email address',
+                  Text(
+                      'A 6 digit verification pin will send to your email address',
                       style: Theme.of(context).textTheme.titleSmall),
                   const SizedBox(
                     height: 20,
@@ -45,34 +48,32 @@ class _EmailverificationScreenState extends State<EmailverificationScreen> {
                     height: 20,
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: _onTapConfirmButton,
                     child: const Icon(Icons.arrow_back),
                   ),
                   const SizedBox(
                     height: 24,
                   ),
                   Center(
-                    child:
-                        RichText(
-                          text: TextSpan(
+                    child: RichText(
+                      text: TextSpan(
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 0.4,
+                        ),
+                        text: "Have account?",
+                        children: [
+                          TextSpan(
                             style: const TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 0.4,
+                              color: AppColors.themeColor,
                             ),
-                            text: "Have account?",
-                            children: [
-                              TextSpan(
-                                style: const TextStyle(
-                                  color: AppColors.themeColor,
-                                ),
-                                text: ' Sign In',
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = _onTapSignInButton,
-                              )
-                            ],
-                          ),
-                       
+                            text: ' Sign In',
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = _onTapSignInButton,
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -86,6 +87,15 @@ class _EmailverificationScreenState extends State<EmailverificationScreen> {
 
   void _onTapSignInButton() {
     Navigator.pop(context);
+  }
+
+  void _onTapConfirmButton() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const PinVerificationScreen(),
+      ),
+    );
   }
 
   @override
