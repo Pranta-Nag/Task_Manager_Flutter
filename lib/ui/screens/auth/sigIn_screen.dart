@@ -1,7 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:task_manager/ui/screens/emailVerification_screen.dart';
-import 'package:task_manager/ui/screens/signUp_screen.dart';
+import 'package:task_manager/ui/screens/auth/emailVerification_screen.dart';
+import 'package:task_manager/ui/screens/auth/signUp_screen.dart';
+import 'package:task_manager/ui/screens/main_bottom_nav_bar_screen.dart';
 import 'package:task_manager/ui/utility/app_colors.dart';
 import 'package:task_manager/ui/widgets/background_widget.dart';
 
@@ -55,8 +56,8 @@ class _SigninScreenState extends State<SigninScreen> {
                     height: 20,
                   ),
                   ElevatedButton(
-                    onPressed: () {},
-                    child: const Icon(Icons.arrow_back),
+                    onPressed: _onTapNextButton,
+                    child: const Icon(Icons.arrow_circle_right),
                   ),
                   const SizedBox(
                     height: 24,
@@ -100,14 +101,23 @@ class _SigninScreenState extends State<SigninScreen> {
     );
   }
 
+  void _onTapNextButton() {
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const MainBottomNavBarScreen()));
+  }
+
   void _onTapSignUpButton() {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => const SignupScreen()));
   }
 
-   void _onTapForgotPasswordButton() {
+  void _onTapForgotPasswordButton() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const EmailverificationScreen()));
+        context,
+        MaterialPageRoute(
+            builder: (context) => const EmailverificationScreen()));
   }
 
   @override
