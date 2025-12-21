@@ -1,18 +1,24 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:task_manager/ui/screens/update_profile_screen.dart';
 import 'package:task_manager/ui/utility/app_colors.dart';
 import 'package:task_manager/ui/widgets/NetworkCashedImage.dart';
 
-AppBar profileAppbar() {
-    return AppBar(
-      backgroundColor: AppColors.themeColor,
-      leading: const Padding(
+AppBar profileAppbar(context, [bool fromUpdateProfile = false]) {
+  return AppBar(
+    backgroundColor: AppColors.themeColor,
+    leading: GestureDetector(
+      onTap: () => navigateToUpdateProfile(context, fromUpdateProfile),
+      child: const Padding(
         padding: EdgeInsets.all(8.0),
         child: CircleAvatar(
           radius: 10,
           child: Networkcashedimage(url: ''),
         ),
       ),
-      title: const Column(
+    ),
+    title: GestureDetector(
+      onTap: () => navigateToUpdateProfile(context, fromUpdateProfile),
+      child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
@@ -32,8 +38,25 @@ AppBar profileAppbar() {
           ),
         ],
       ),
-      actions: [
-        IconButton(onPressed: (){}, icon:const Icon(Icons.logout),),
-      ],
-    );
+    ),
+    actions: [
+      IconButton(
+        onPressed: () {},
+        icon: const Icon(Icons.logout),
+      ),
+    ],
+  );
+}
+
+void navigateToUpdateProfile(BuildContext context, bool fromUpdateProfile) {
+  if (fromUpdateProfile) {
+    return;
   }
+
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => const UpdateProfileScreen(),
+    ),
+  );
+}

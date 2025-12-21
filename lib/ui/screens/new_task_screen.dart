@@ -20,7 +20,9 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
         child: Column(
           children: [
             _buildSummerySection(),
-            const SizedBox(height: 8,),
+            const SizedBox(
+              height: 8,
+            ),
             Expanded(
               child: ListView.builder(
                 itemCount: 5,
@@ -32,17 +34,23 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: _onTapAddButton, 
-      backgroundColor: AppColors.themeColor,
-      foregroundColor: Colors.white,
-      child:const Icon(Icons.add),),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _onTapAddButton,
+        backgroundColor: AppColors.themeColor,
+        foregroundColor: Colors.white,
+        child: const Icon(Icons.add),
+      ),
     );
   }
 
-void _onTapAddButton(){
-  Navigator.push(context, MaterialPageRoute(builder: (context)=>const AddNewTaskScreen()));
-}
-
+  void _onTapAddButton() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const AddNewTaskScreen(),
+      ),
+    );
+  }
 
   Widget _buildSummerySection() {
     return const SingleChildScrollView(
