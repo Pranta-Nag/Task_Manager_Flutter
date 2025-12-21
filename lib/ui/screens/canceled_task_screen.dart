@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/ui/widgets/profile_appbar.dart';
+import 'package:task_manager/ui/widgets/task_item.dart';
 
 class CanceledTaskScreen extends StatefulWidget {
   const CanceledTaskScreen({super.key});
@@ -10,6 +12,13 @@ class CanceledTaskScreen extends StatefulWidget {
 class _CanceledTaskScreenState extends State<CanceledTaskScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: ListView.builder(
+        itemCount: 5,
+        itemBuilder: (context, index) {
+          return const TaskItem();
+        },
+      ),
+    );
   }
 }

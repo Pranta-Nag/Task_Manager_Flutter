@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/ui/widgets/background_widget.dart';
 import 'package:task_manager/ui/widgets/profile_appbar.dart';
-import 'package:task_manager/ui/widgets/task_summery_card.dart';
 
 class AddNewTaskScreen extends StatefulWidget {
   const AddNewTaskScreen({super.key});
@@ -10,39 +10,54 @@ class AddNewTaskScreen extends StatefulWidget {
 }
 
 class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
+  final TextEditingController _titleTEController = TextEditingController();
+  final TextEditingController _descriptionTEController =
+      TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: profileAppbar(),
-      body: Column(
-        children: [_buildSummerySection()],
+      body: SingleChildScrollView(
+        child: BackgroundWidget(
+            child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            children: [
+              TextFormField(
+                controller: _titleTEController,
+                decoration: const InputDecoration(
+                  hintText: "Title",
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextFormField(
+                controller: _descriptionTEController,
+                maxLines: 5,
+                decoration: const InputDecoration(
+                  hintText: "Description",
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Icon(Icons.add),
+              ),
+            ],
+          ),
+        )),
       ),
     );
   }
 
-  Widget _buildSummerySection() {
-    return const SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          TaskSummeryCard(
-            title: 'New Task',
-            count: '32',
-          ),
-          TaskSummeryCard(
-            title: 'Completed',
-            count: '32',
-          ),
-          TaskSummeryCard(
-            title: 'In Progress',
-            count: '32',
-          ),
-          TaskSummeryCard(
-            title: 'Cancel',
-            count: '32',
-          ),
-        ],
-      ),
-    );
+  @override
+  void dispose() {
+    _titleTEController;
+    _descriptionTEController;
+    super.dispose();
   }
 }
